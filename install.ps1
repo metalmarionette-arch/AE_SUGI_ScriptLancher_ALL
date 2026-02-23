@@ -3,7 +3,8 @@ param(
     [string]$AeVersion,
     [switch]$AllDetectedVersions,
     [switch]$Force,
-    [switch]$Elevated
+    [switch]$Elevated,
+    [switch]$NonInteractive
 )
 
 $ErrorActionPreference = 'Stop'
@@ -24,6 +25,7 @@ function Ensure-Elevated {
     if ($AeVersion) { $argList += @('-AeVersion', ('"{0}"' -f $AeVersion)) }
     if ($AllDetectedVersions) { $argList += '-AllDetectedVersions' }
     if ($Force) { $argList += '-Force' }
+    if ($NonInteractive) { $argList += '-NonInteractive' }
 
     $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList ($argList -join ' ') -Verb RunAs -Wait -PassThru
 
@@ -55,7 +57,9 @@ function Copy-WithPrompt {
         [switch]$ForceCopy
     )
 
-    if ((Test-Path $Destination) -and -not $ForceCopy) {
+    $shouldOverwrite = $ForceCopy -or $NonInteractive
+
+    if ((Test-Path $Destination) -and -not $shouldOverwrite) {
         $ans = Read-Host "Already exists: $Destination`nOverwrite? (y/N)"
         if ($ans -notin @('y', 'Y')) {
             Write-Host "Skipped: $Destination" -ForegroundColor Yellow
@@ -71,6 +75,16 @@ try {
     if (-not $AeVersion -and -not $AllDetectedVersions) {
         $AllDetectedVersions = $true
         Write-Host 'No version argument supplied. Using auto-detect mode.' -ForegroundColor Cyan
+    }
+
+    if (-not $Force) {
+        $Force = $true
+        Write-Host 'Force overwrite mode enabled by default.' -ForegroundColor Cyan
+    }
+
+    if (-not $NonInteractive) {
+        $NonInteractive = $true
+        Write-Host 'Non-interactive mode enabled by default.' -ForegroundColor Cyan
     }
 
     Ensure-Elevated
@@ -90,7 +104,12 @@ try {
     if ($AeVersion) {
         $versions = @($AeVersion)
     } elseif ($AllDetectedVersions) {
-        $searchRoots = @(${env:ProgramFiles}, ${env:ProgramFiles(x86)}) | Where-Object { $_ -and (Test-Path $_) }
+        $searchRoots = @(
+            (Join-Path ${env:ProgramFiles} 'Adobe'),
+            (Join-Path ${env:ProgramFiles(x86)} 'Adobe'),
+            ${env:ProgramFiles},
+            ${env:ProgramFiles(x86)}
+        ) | Where-Object { $_ -and (Test-Path $_) } | Sort-Object -Unique
         $found = @()
 
         foreach ($root in $searchRoots) {
@@ -106,6 +125,8 @@ try {
             Write-Host 'No After Effects installations detected in default folders.' -ForegroundColor Yellow
             Write-Host 'Continuing with Documents folder install only.' -ForegroundColor Yellow
             $versions = @()
+        } else {
+            Write-Host ("Detected AE versions: {0}" -f (($versions -join ', '))) -ForegroundColor Cyan
         }
     } else {
         throw 'No install mode selected. Use -AeVersion 2024 or -AllDetectedVersions.'

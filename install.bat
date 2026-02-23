@@ -11,7 +11,7 @@ echo.
 
 if not exist "%SCRIPT_PATH%" goto :missing
 
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%" %*
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%" -AllDetectedVersions -Force -NonInteractive %*
 set "EXITCODE=%ERRORLEVEL%"
 
 echo.

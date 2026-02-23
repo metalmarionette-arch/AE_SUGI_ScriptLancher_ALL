@@ -26,9 +26,8 @@
 
 1. zip を任意の場所に解凍
 2. `install.bat` をダブルクリックして実行（自動で管理者権限を要求します）
-3. 既定では AE バージョンを自動検出してインストール
-4. 必要なら `install.bat -AeVersion 2024` のように明示指定
-5. 完了後、After Effects を起動して  
+3. 自動で AE バージョン検出 + 上書きインストール（確認プロンプトなし）
+4. 完了後、After Effects を起動して  
    `ウィンドウ > AE_SUGI_ScriptLancher` から開く
 
 > `Program Files` 配下に書き込むため、途中で UAC（管理者権限確認）が表示されます。
@@ -69,3 +68,5 @@ install.bat -AeVersion 2026 -Force
 ※ `install.bat` は文字化け/実行崩れを防ぐため、ASCII の表示文言のみを使っています。
 ※ `install.ps1` も文字化け/実行崩れを防ぐため、ASCII の表示文言のみを使っています。
 ※ AE が既定パスで見つからない場合、Documents 側のみインストールして警告を表示します。
+
+- 既定では非対話モード（`-NonInteractive`）と上書き（`-Force`）で実行します。
