@@ -90,14 +90,22 @@ try {
     if ($AeVersion) {
         $versions = @($AeVersion)
     } elseif ($AllDetectedVersions) {
-        $versions = Get-ChildItem -Path ${env:ProgramFiles} -Directory -Filter 'Adobe After Effects *' |
-            ForEach-Object {
-                if ($_.Name -match '^Adobe After Effects (\d{4})$') { $matches[1] }
-            } |
-            Sort-Object -Unique
+        $searchRoots = @(${env:ProgramFiles}, ${env:ProgramFiles(x86)}) | Where-Object { $_ -and (Test-Path $_) }
+        $found = @()
+
+        foreach ($root in $searchRoots) {
+            $found += Get-ChildItem -Path $root -Directory -Filter 'Adobe After Effects *' -ErrorAction SilentlyContinue |
+                ForEach-Object {
+                    if ($_.Name -match '^Adobe After Effects (\d{4})$') { $matches[1] }
+                }
+        }
+
+        $versions = $found | Sort-Object -Unique
 
         if (-not $versions -or $versions.Count -eq 0) {
-            throw 'No After Effects installations detected. Use -AeVersion 2024 (or similar).'
+            Write-Host 'No After Effects installations detected in default folders.' -ForegroundColor Yellow
+            Write-Host 'Continuing with Documents folder install only.' -ForegroundColor Yellow
+            $versions = @()
         }
     } else {
         throw 'No install mode selected. Use -AeVersion 2024 or -AllDetectedVersions.'

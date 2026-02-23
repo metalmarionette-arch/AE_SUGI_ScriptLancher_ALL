@@ -68,3 +68,4 @@ install.bat -AeVersion 2026 -Force
 
 ※ `install.bat` は文字化け/実行崩れを防ぐため、ASCII の表示文言のみを使っています。
 ※ `install.ps1` も文字化け/実行崩れを防ぐため、ASCII の表示文言のみを使っています。
+※ AE が既定パスで見つからない場合、Documents 側のみインストールして警告を表示します。
