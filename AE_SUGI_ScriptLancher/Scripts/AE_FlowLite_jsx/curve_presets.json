@@ -1,0 +1,740 @@
+{
+  "bezier": [
+    {
+      "id": "bz-sine-in",
+      "name": "Sine",
+      "dir": "IN",
+      "x1": 0.13,
+      "y1": 0.0,
+      "x2": 0.39,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quad-in",
+      "name": "Quad",
+      "dir": "IN",
+      "x1": 0.11,
+      "y1": 0.0,
+      "x2": 0.5,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-cubic-in",
+      "name": "Cubic",
+      "dir": "IN",
+      "x1": 0.32,
+      "y1": 0.0,
+      "x2": 0.67,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quart-in",
+      "name": "Quart",
+      "dir": "IN",
+      "x1": 0.5,
+      "y1": 0.0,
+      "x2": 0.75,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quint-in",
+      "name": "Quint",
+      "dir": "IN",
+      "x1": 0.64,
+      "y1": 0.0,
+      "x2": 0.78,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-expo-in",
+      "name": "Expo",
+      "dir": "IN",
+      "x1": 0.7,
+      "y1": 0.0,
+      "x2": 0.84,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-circ-in",
+      "name": "Circ",
+      "dir": "IN",
+      "x1": 0.55,
+      "y1": 0.0,
+      "x2": 1.0,
+      "y2": 0.45
+    },
+    {
+      "id": "bz-back-in",
+      "name": "Back",
+      "dir": "IN",
+      "x1": 0.36,
+      "y1": 0.0,
+      "x2": 0.66,
+      "y2": -0.56
+    },
+    {
+      "id": "bz-sharp-in-a",
+      "name": "Needle IN",
+      "dir": "IN",
+      "x1": 0.8,
+      "y1": 0.0,
+      "x2": 0.99,
+      "y2": 0.05
+    },
+    {
+      "id": "bz-sharp-in-b",
+      "name": "Launch IN",
+      "dir": "IN",
+      "x1": 0.5,
+      "y1": 0.0,
+      "x2": 0.99,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-sine-out",
+      "name": "Sine",
+      "dir": "OUT",
+      "x1": 0.61,
+      "y1": 1.0,
+      "x2": 0.87,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quad-out",
+      "name": "Quad",
+      "dir": "OUT",
+      "x1": 0.5,
+      "y1": 1.0,
+      "x2": 0.89,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-cubic-out",
+      "name": "Cubic",
+      "dir": "OUT",
+      "x1": 0.33,
+      "y1": 1.0,
+      "x2": 0.68,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quart-out",
+      "name": "Quart",
+      "dir": "OUT",
+      "x1": 0.25,
+      "y1": 1.0,
+      "x2": 0.5,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quint-out",
+      "name": "Quint",
+      "dir": "OUT",
+      "x1": 0.22,
+      "y1": 1.0,
+      "x2": 0.36,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-expo-out",
+      "name": "Expo",
+      "dir": "OUT",
+      "x1": 0.16,
+      "y1": 1.0,
+      "x2": 0.3,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-circ-out",
+      "name": "Circ",
+      "dir": "OUT",
+      "x1": 0.0,
+      "y1": 0.55,
+      "x2": 0.45,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-back-out",
+      "name": "Back",
+      "dir": "OUT",
+      "x1": 0.34,
+      "y1": 1.56,
+      "x2": 0.64,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-sharp-out-a",
+      "name": "Needle OUT",
+      "dir": "OUT",
+      "x1": 0.01,
+      "y1": 0.8,
+      "x2": 0.05,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-sharp-out-b",
+      "name": "Brake OUT",
+      "dir": "OUT",
+      "x1": 0.01,
+      "y1": 1.0,
+      "x2": 0.5,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-sine-io",
+      "name": "Sine",
+      "dir": "INOUT",
+      "x1": 0.36,
+      "y1": 0.0,
+      "x2": 0.64,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quad-io",
+      "name": "Quad",
+      "dir": "INOUT",
+      "x1": 0.44,
+      "y1": 0.0,
+      "x2": 0.56,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-cubic-io",
+      "name": "Cubic",
+      "dir": "INOUT",
+      "x1": 0.66,
+      "y1": 0.0,
+      "x2": 0.34,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quart-io",
+      "name": "Quart",
+      "dir": "INOUT",
+      "x1": 0.78,
+      "y1": 0.0,
+      "x2": 0.22,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-quint-io",
+      "name": "Quint",
+      "dir": "INOUT",
+      "x1": 0.86,
+      "y1": 0.0,
+      "x2": 0.14,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-expo-io",
+      "name": "Expo",
+      "dir": "INOUT",
+      "x1": 0.9,
+      "y1": 0.0,
+      "x2": 0.1,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-circ-io",
+      "name": "Circ",
+      "dir": "INOUT",
+      "x1": 0.85,
+      "y1": 0.09,
+      "x2": 0.15,
+      "y2": 0.91
+    },
+    {
+      "id": "bz-jump-io",
+      "name": "Jump",
+      "dir": "INOUT",
+      "x1": 1.0,
+      "y1": 0.0,
+      "x2": 0.0,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-anticipate-io",
+      "name": "Anticipate",
+      "dir": "INOUT",
+      "x1": 0.8,
+      "y1": -0.4,
+      "x2": 0.5,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-sine-oi",
+      "name": "Sine",
+      "dir": "OUTIN",
+      "x1": 0.64,
+      "y1": 1.0,
+      "x2": 0.36,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quad-oi",
+      "name": "Quad",
+      "dir": "OUTIN",
+      "x1": 0.56,
+      "y1": 1.0,
+      "x2": 0.44,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-cubic-oi",
+      "name": "Cubic",
+      "dir": "OUTIN",
+      "x1": 0.34,
+      "y1": 1.0,
+      "x2": 0.66,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quart-oi",
+      "name": "Quart",
+      "dir": "OUTIN",
+      "x1": 0.22,
+      "y1": 1.0,
+      "x2": 0.78,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-quint-oi",
+      "name": "Quint",
+      "dir": "OUTIN",
+      "x1": 0.14,
+      "y1": 1.0,
+      "x2": 0.86,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-expo-oi",
+      "name": "Expo",
+      "dir": "OUTIN",
+      "x1": 0.1,
+      "y1": 1.0,
+      "x2": 0.9,
+      "y2": 0.0
+    },
+    {
+      "id": "bz-circ-oi",
+      "name": "Circ",
+      "dir": "OUTIN",
+      "x1": 0.15,
+      "y1": 0.91,
+      "x2": 0.85,
+      "y2": 0.09
+    },
+    {
+      "id": "bz-10",
+      "name": "10",
+      "dir": "INOUT",
+      "x1": 0.1,
+      "y1": 0.0,
+      "x2": 0.9,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-20",
+      "name": "20",
+      "dir": "INOUT",
+      "x1": 0.2,
+      "y1": 0.0,
+      "x2": 0.8,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-30",
+      "name": "30",
+      "dir": "INOUT",
+      "x1": 0.3,
+      "y1": 0.0,
+      "x2": 0.7,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-40",
+      "name": "40",
+      "dir": "INOUT",
+      "x1": 0.4,
+      "y1": 0.0,
+      "x2": 0.6,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-50",
+      "name": "50",
+      "dir": "INOUT",
+      "x1": 0.5,
+      "y1": 0.0,
+      "x2": 0.5,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-60",
+      "name": "60",
+      "dir": "INOUT",
+      "x1": 0.6,
+      "y1": 0.0,
+      "x2": 0.4,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-70",
+      "name": "70",
+      "dir": "INOUT",
+      "x1": 0.7,
+      "y1": 0.0,
+      "x2": 0.3,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-80",
+      "name": "80",
+      "dir": "INOUT",
+      "x1": 0.8,
+      "y1": 0.0,
+      "x2": 0.2,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-90",
+      "name": "90",
+      "dir": "INOUT",
+      "x1": 0.99,
+      "y1": 0.0,
+      "x2": 0.01,
+      "y2": 1.0
+    },
+    {
+      "id": "bz-V25",
+      "name": "V25",
+      "dir": "OUTIN",
+      "x1": 0.1,
+      "y1": 0.25,
+      "x2": 0.9,
+      "y2": 0.75
+    },
+    {
+      "id": "bz-V50",
+      "name": "V50",
+      "dir": "OUTIN",
+      "x1": 0.1,
+      "y1": 0.5,
+      "x2": 0.9,
+      "y2": 0.5
+    },
+    {
+      "id": "bz-V75",
+      "name": "V75",
+      "dir": "OUTIN",
+      "x1": 0.1,
+      "y1": 0.75,
+      "x2": 0.9,
+      "y2": 0.25
+    },
+    {
+      "id": "bz-V90",
+      "name": "V90",
+      "dir": "OUTIN",
+      "x1": 0.1,
+      "y1": 1.0,
+      "x2": 0.9,
+      "y2": 0
+    },
+    {
+      "id": "bz-V100",
+      "name": "V100",
+      "dir": "OUTIN",
+      "x1": 0.01,
+      "y1": 1.0,
+      "x2": 0.99,
+      "y2": 0
+    }
+  ],
+  "spring": [
+    {
+      "id": "sp-heavy",
+      "name": "Heavy",
+      "dir": "INOUT",
+      "m":5.0,"k":35,"c":0
+    },
+    {
+      "id": "sp-bouncy",
+      "name": "Bouncy",
+      "dir": "INOUT",
+      "m":4.0,"k":80,"c":0
+    },
+    {
+      "id": "sp-drop",
+      "name": "Drop",
+      "dir": "INOUT",
+       "m":4.0,"k":25,"c":5
+    },
+    {
+      "id": "sp-gride",
+      "name": "Gride",
+      "dir": "INOUT",
+      "m":0.0,"k":10,"c":15
+    },
+    {
+      "id": "sp-snap",
+      "name": "Snap",
+      "dir": "INOUT",
+      "m":1.0,"k":50,"c":0
+    },
+    {
+      "id": "sp-lazy",
+      "name": "Lazy",
+      "dir": "INOUT",
+      "m":2.5,"k":10,"c":0
+      },
+    {
+      "id": "sp-elastic",
+      "name": "Elastic",
+      "dir": "INOUT",
+      "m":2.5,"k":15,"c":3
+    }
+  ],
+  "bounce": [
+    {
+      "id": "bo-firm",
+      "name": "Firm",
+      "dir": "OUT",
+      "B":4.0,"c":60 
+    },
+    {
+      "id": "bo-soft",
+      "name": "Soft",
+      "dir": "OUT",
+      "B":2.0,"c":75 
+    },
+    {
+      "id": "bo-sharp",
+      "name": "Sharp",
+      "dir": "OUT",
+      "B":3.0,"c":85 
+    },
+    {
+      "id": "bo-subtle",
+      "name": "Subtle",
+      "dir": "OUT",
+      "B":1.0,"c":55 
+    },
+    {
+      "id": "bo-playful",
+      "name": "Playful",
+      "dir": "OUT",
+      "B":6.0,"c":35 
+    },
+    {
+      "id": "bo-springy",
+      "name": "Springy",
+      "dir": "OUT",
+      "B":8.0,"c":10 
+    },
+  ],
+  "wiggle": [
+    {
+      "id": "wg-subtle",
+      "name": "Subtle",
+      "dir": "INOUT",
+      "w":2.0,"c":75 
+    },
+    {
+      "id": "wg-energetic",
+      "name": "Energetic",
+      "dir": "INOUT",
+      "w":6.0,"c":25 
+    },
+    {
+      "id": "wg-playful",
+      "name": "Playful",
+      "dir": "INOUT",
+      "w":4.0,"c":50 
+    },
+    {
+      "id": "wg-sharp",
+      "name": "Sharp",
+      "dir": "INOUT",
+      "w":3.0,"c":90 
+    },
+    {
+      "id": "wg-smooth",
+      "name": "Smooth",
+      "dir": "INOUT",
+      "w":1.0,"c":100 
+    },
+    {
+      "id": "wg-intense",
+      "name": "Intense",
+      "dir": "INOUT",
+      "w":8.0,"c":10 
+    },
+    {
+      "id": "wg-dynamic",
+      "name": "Dynamic",
+      "dir": "INOUT",
+      "w":10.0,"c":0
+    }
+  ],
+  "overshoot": [
+    {
+      "id": "ov-soft",
+      "name": "Soft",
+      "dir": "IN",
+      "m":2.0,"c":60
+    },
+    {
+      "id": "ov-firm",
+      "name": "Firm",
+      "dir": "IN",
+      "m":3.0,"c":80
+    },
+    {
+      "id": "ov-smooth",
+      "name": "Smooth",
+      "dir": "IN",
+      "m":3.5,"c":70
+    },
+    {
+      "id": "ov-dynamic",
+      "name": "Dynamic",
+      "dir": "IN",
+      "m":4.0,"c":20
+    },
+    {
+      "id": "ov-dramatic",
+      "name": "Dramatic",
+      "dir": "IN",
+      "m":5.0,"c":0
+    },
+    {
+      "id": "ov-soft",
+      "name": "Soft",
+      "dir": "OUT",
+      "m":2.0,"c":60
+    },
+    {
+      "id": "ov-firm",
+      "name": "Firm",
+      "dir": "OUT",
+      "m":3.0,"c":80
+    },
+    {
+      "id": "ov-smooth",
+      "name": "Smooth",
+      "dir": "OUT",
+      "m":3.5,"c":70
+    },
+    {
+      "id": "ov-dynamic",
+      "name": "Dynamic",
+      "dir": "OUT",
+      "m":4.0,"c":20
+    },
+    {
+      "id": "ov-dramatic",
+      "name": "Dramatic",
+      "dir": "OUT",
+      "m":5.0,"c":0
+    },
+    {
+      "id": "ov-soft",
+      "name": "Soft",
+      "dir": "INOUT",
+      "m":2.0,"c":60
+    },
+    {
+      "id": "ov-firm",
+      "name": "Firm",
+      "dir": "INOUT",
+      "m":2.0,"c":60
+    },
+    {
+      "id": "ov-smooth",
+      "name": "Smooth",
+      "dir": "INOUT",
+      "m":3.5,"c":70
+    },
+    {
+      "id": "ov-dynamic",
+      "name": "Dynamic",
+      "dir": "INOUT",
+      "m":4.0,"c":20
+    },
+    {
+      "id": "ov-dramatic",
+      "name": "Dramatic",
+      "dir": "INOUT",
+      "m":5.0,"c":0
+    },
+  ],
+  "flicker_anm": [
+    {
+      "id": "chikachika",
+      "name": "chikachika_a",
+      "dir": "INOUT",
+      "step": "100, 0 3.3%, 100 16.7%, 0 20.0%, 100 30.0%, 0 33.3%, 100 43.3%, 0 46.7%, 100 53.3%, 0 56.7%, 100 60.0%, 0 70.0%, 100"
+    },
+    {
+      "id": "glitch",
+      "name": "glitch_microburst",
+      "dir": "INOUT",
+      "step": "100, 0 6.7%, 100 10.0%, 0 16.7%, 100 20.0%, 0 23.3%, 100 33.3%, 0 36.7%, 100 40.0%, 0 53.3%, 100 56.7%, 0 70.0%, 100 73.3%, 0 76.7%, 100 90.0%, 0 93.3%, 100"
+    },
+    {
+      "id": "glitch",
+      "name": "glitch_scanline_stutter",
+      "dir": "INOUT",
+      "step": "100, 0 10.0%, 100 13.3%, 0 20.0%, 100 23.3%, 0 26.7%, 100 40.0%, 0 43.3%, 100 46.7%, 0 50.0%, 100 53.3%, 0 66.7%, 100 70.0%, 0 73.3%, 100 80.0%, 0 83.3%, 100"
+    },
+    {
+      "id": "glitch",
+      "name": "glitch_dropout_long",
+      "dir": "INOUT",
+      "step": "100, 0 3.3%, 100 6.7%, 0 13.3%, 100 16.7%, 0 46.7%, 100 50.0%, 0 56.7%, 100 60.0%, 0 63.3%, 100 80.0%, 0 83.3%, 100 86.7%, 0 90.0%, 100"
+    },
+    {
+      "id": "neon",
+      "name": "neon_warmup_sputter_a",
+      "dir": "INOUT",
+      "step": "0, 100 3.3%, 0 6.7%, 100 13.3%, 0 16.7%, 100 26.7%, 0 30.0%, 100 33.3%, 0 43.3%, 100 46.7%, 0 50.0%, 100 70.0%, 0 73.3%, 100"
+    },
+    {
+      "id": "neon",
+      "name": "neon_warmup_sputter_b",
+      "dir": "INOUT",
+      "step": "0, 100 6.7%, 0 10.0%, 100 16.7%, 0 20.0%, 100 23.3%, 0 26.7%, 100 56.7%, 0 60.0%, 100 63.3%, 0 66.7%, 100 80.0%, 0 83.3%, 100"
+    },
+    {
+      "id": "neon",
+      "name": "neon_sign_dying_endcap",
+      "dir": "INOUT",
+      "step": "100, 0 33.3%, 100 36.7%, 0 43.3%, 100 46.7%, 0 53.3%, 100 56.7%, 0 60.0%, 100 70.0%, 0 73.3%, 100 76.7%, 0"
+    },
+    {
+      "id": "organic_pulse",
+      "name": "heartbeat_doubletap",
+      "dir": "INOUT",
+      "step": "0, 100 13.3%, 0 16.7%, 100 23.3%, 0 26.7%, 100 46.7%, 0 50.0%, 100 53.3%, 0 56.7%, 100 80.0%, 0 83.3%, 100 90.0%, 0"
+    },
+    {
+      "id": "organic_pulse",
+      "name": "heartbeat_triplet_aftershock",
+      "dir": "INOUT",
+      "step": "0, 100 20.0%, 0 23.3%, 100 33.3%, 0 36.7%, 100 40.0%, 0 43.3%, 100 63.3%, 0 66.7%, 100 70.0%, 0 73.3%, 100 76.7%, 0"
+    },
+    {
+      "id": "ghost",
+      "name": "ghost_peekaboo_glimpses",
+      "dir": "INOUT",
+      "step": "0, 100 6.7%, 0 10.0%, 100 36.7%, 0 40.0%, 100 43.3%, 0 46.7%, 100 76.7%, 0 80.0%, 100 83.3%, 0"
+    },
+    {
+      "id": "ghost",
+      "name": "ghost_broken_signal_sparse",
+      "dir": "INOUT",
+      "step": "0, 100 3.3%, 0 6.7%, 100 30.0%, 0 33.3%, 100 36.7%, 0 40.0%, 100 66.7%, 0 70.0%, 100 73.3%, 0 93.3%, 100 96.7%, 0"
+    }
+  ]
+}
