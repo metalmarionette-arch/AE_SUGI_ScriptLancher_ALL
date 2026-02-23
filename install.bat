@@ -1,31 +1,34 @@
 @echo off
 setlocal
 
-set SCRIPT_DIR=%~dp0
-set SCRIPT_PATH=%SCRIPT_DIR%install.ps1
+set "SCRIPT_DIR=%~dp0"
+set "SCRIPT_PATH=%SCRIPT_DIR%install.ps1"
 
-echo ================================
+echo =====================================
 echo AE_SUGI_ScriptLancher Installer
-echo ================================
+echo =====================================
 echo.
 
-if not exist "%SCRIPT_PATH%" (
-  echo install.ps1 が見つかりません: %SCRIPT_PATH%
-  echo.
-  pause
-  exit /b 1
-)
+if not exist "%SCRIPT_PATH%" goto :missing
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%" %*
-set EXITCODE=%ERRORLEVEL%
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%" %*
+set "EXITCODE=%ERRORLEVEL%"
 
 echo.
-if %EXITCODE% neq 0 (
-  echo インストールに失敗しました。上のエラー内容を確認してください。
+if "%EXITCODE%"=="0" (
+  echo Installation completed.
 ) else (
-  echo インストールが完了しました。
+  echo Installation failed. Please read the messages above.
 )
 
+goto :end
+
+:missing
+echo install.ps1 was not found:
+echo %SCRIPT_PATH%
+set "EXITCODE=1"
+
+:end
 echo.
 pause
 exit /b %EXITCODE%

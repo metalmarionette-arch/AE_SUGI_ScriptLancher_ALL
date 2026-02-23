@@ -64,3 +64,5 @@ install.bat -AeVersion 2026 -Force
 
 
 - `install.bat` は処理後に自動で閉じず、結果表示のまま停止します。
+
+※ `install.bat` は文字化け/実行崩れを防ぐため、ASCII の表示文言のみを使っています。
