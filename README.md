@@ -25,12 +25,12 @@
 ## インストール方法（受け取り側）
 
 1. zip を任意の場所に解凍
-2. `install.bat` を右クリックして「管理者として実行」
+2. `install.bat` をダブルクリックして実行（自動で管理者権限を要求します）
 3. バージョン入力の案内が出たら `2024` / `2025` / `2026` などを入力
 4. 完了後、After Effects を起動して  
    `ウィンドウ > AE_SUGI_ScriptLancher` から開く
 
-> `Program Files` 配下に書き込むため、管理者権限が必要です。
+> `Program Files` 配下に書き込むため、途中で UAC（管理者権限確認）が表示されます。
 
 ---
 
@@ -61,3 +61,6 @@ install.bat -AeVersion 2026 -Force
 - `AE_SUGI_ScriptLancher.jsx` は Documents 配下の
   `Adobe\After Effects\AE_SUGI_ScriptLancher` を参照して動作します。
 - そのため、`AE_SUGI_ScriptLancher` フォルダも必ず同時に配置してください。
+
+
+- `install.bat` は処理後に自動で閉じず、結果表示のまま停止します。

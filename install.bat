@@ -2,14 +2,30 @@
 setlocal
 
 set SCRIPT_DIR=%~dp0
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_DIR%install.ps1" %*
+set SCRIPT_PATH=%SCRIPT_DIR%install.ps1
 
-if %ERRORLEVEL% neq 0 (
+echo ================================
+echo AE_SUGI_ScriptLancher Installer
+echo ================================
+echo.
+
+if not exist "%SCRIPT_PATH%" (
+  echo install.ps1 が見つかりません: %SCRIPT_PATH%
   echo.
-  echo インストールに失敗しました。エラー内容を確認してください。
-  exit /b %ERRORLEVEL%
+  pause
+  exit /b 1
+)
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%" %*
+set EXITCODE=%ERRORLEVEL%
+
+echo.
+if %EXITCODE% neq 0 (
+  echo インストールに失敗しました。上のエラー内容を確認してください。
+) else (
+  echo インストールが完了しました。
 )
 
 echo.
-echo インストールが完了しました。
-endlocal
+pause
+exit /b %EXITCODE%
