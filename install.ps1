@@ -17,22 +17,21 @@ function Test-IsAdmin {
 function Ensure-Elevated {
     if (Test-IsAdmin) { return }
 
-    Write-Host '管理者権限が必要なため、昇格実行します...' -ForegroundColor Yellow
+    Write-Host 'Administrator rights are required. Restarting as admin...' -ForegroundColor Yellow
 
-    $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"{0}"' -f $PSCommandPath), '-Elevated')
+    $argList = @('-NoLogo', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"{0}"' -f $PSCommandPath), '-Elevated')
 
     if ($AeVersion) { $argList += @('-AeVersion', ('"{0}"' -f $AeVersion)) }
     if ($AllDetectedVersions) { $argList += '-AllDetectedVersions' }
     if ($Force) { $argList += '-Force' }
 
     Start-Process -FilePath 'powershell.exe' -ArgumentList ($argList -join ' ') -Verb RunAs | Out-Null
-    Write-Host '昇格したインストーラーを起動しました。' -ForegroundColor Cyan
+    Write-Host 'Elevated installer started.' -ForegroundColor Cyan
     exit 0
 }
 
 function Get-AfterEffectsScriptUiPanelPath {
     param([Parameter(Mandatory = $true)][string]$Version)
-
     return Join-Path ${env:ProgramFiles} ("Adobe/Adobe After Effects {0}/Support Files/Scripts/ScriptUI Panels" -f $Version)
 }
 
@@ -48,15 +47,15 @@ function Copy-WithPrompt {
     )
 
     if ((Test-Path $Destination) -and -not $ForceCopy) {
-        $ans = Read-Host "既に存在します: $Destination`n上書きしますか? (y/N)"
+        $ans = Read-Host "Already exists: $Destination`nOverwrite? (y/N)"
         if ($ans -notin @('y', 'Y')) {
-            Write-Host "スキップしました: $Destination" -ForegroundColor Yellow
+            Write-Host "Skipped: $Destination" -ForegroundColor Yellow
             return
         }
     }
 
     Copy-Item -Path $Source -Destination $Destination -Recurse -Force
-    Write-Host "コピー完了: $Destination" -ForegroundColor Green
+    Write-Host "Copied: $Destination" -ForegroundColor Green
 }
 
 try {
@@ -67,10 +66,10 @@ try {
     $dataSource = Join-Path $repoRoot 'AE_SUGI_ScriptLancher'
 
     if (-not (Test-Path $jsxSource)) {
-        throw "見つかりません: $jsxSource"
+        throw "Missing file: $jsxSource"
     }
     if (-not (Test-Path $dataSource)) {
-        throw "見つかりません: $dataSource"
+        throw "Missing folder: $dataSource"
     }
 
     $versions = @()
@@ -84,24 +83,23 @@ try {
             Sort-Object -Unique
 
         if (-not $versions -or $versions.Count -eq 0) {
-            throw "After Effects のインストールが見つかりません。-AeVersion 2024 のように明示指定してください。"
+            throw 'No After Effects installations detected. Use -AeVersion 2024 (or similar).'
         }
     } else {
-        $inputVer = Read-Host 'After Effects のバージョンを入力してください (例: 2024)'
+        $inputVer = Read-Host 'Enter After Effects version (example: 2024)'
         if (-not $inputVer) {
-            throw 'バージョンが入力されていません。'
+            throw 'No version was entered.'
         }
         $versions = @($inputVer)
     }
 
     $installedToAe = $false
 
-    # 1) ScriptUI Panels へ jsx をコピー
     foreach ($ver in $versions) {
         $panelDir = Get-AfterEffectsScriptUiPanelPath -Version $ver
         if (-not (Test-Path $panelDir)) {
-            Write-Host "見つかりません: $panelDir" -ForegroundColor Yellow
-            Write-Host "After Effects $ver が未インストールか、インストール先が標準ではありません。" -ForegroundColor Yellow
+            Write-Host "Not found: $panelDir" -ForegroundColor Yellow
+            Write-Host "After Effects $ver may be missing or installed to a non-default location." -ForegroundColor Yellow
             continue
         }
 
@@ -110,7 +108,6 @@ try {
         $installedToAe = $true
     }
 
-    # 2) Documents 配下へフォルダをコピー
     $launcherRoot = Get-LauncherDataPath
     if (-not (Test-Path $launcherRoot)) {
         New-Item -Path $launcherRoot -ItemType Directory -Force | Out-Null
@@ -120,15 +117,16 @@ try {
 
     Write-Host ''
     if (-not $installedToAe) {
-        Write-Host '注意: After Effects 本体側へのコピーは行われていません。バージョン指定やインストール先をご確認ください。' -ForegroundColor Yellow
+        Write-Host 'Warning: JSX was not copied to After Effects program folder.' -ForegroundColor Yellow
+        Write-Host 'Check AE version or custom installation path.' -ForegroundColor Yellow
     }
-    Write-Host 'インストール処理が完了しました。' -ForegroundColor Cyan
-    Write-Host 'After Effects を起動し、[ウィンドウ] > [AE_SUGI_ScriptLancher] から開いてください。' -ForegroundColor Cyan
+    Write-Host 'Install process completed.' -ForegroundColor Cyan
+    Write-Host 'Open After Effects > Window > AE_SUGI_ScriptLancher' -ForegroundColor Cyan
     exit 0
 }
 catch {
     Write-Host ''
-    Write-Host 'インストール中にエラーが発生しました。' -ForegroundColor Red
+    Write-Host 'Installation error.' -ForegroundColor Red
     Write-Host $_.Exception.Message -ForegroundColor Red
     exit 1
 }
