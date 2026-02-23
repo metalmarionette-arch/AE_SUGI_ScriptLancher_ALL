@@ -3,7 +3,16 @@
 // ============================================================================
 var CUSTOM_PRESETS = [];
 if (typeof CUSTOM_FILE_PATH === "undefined") {
-  var CUSTOM_FILE_PATH = Folder.userData.fullName + "/FlowLite_CustomPresets.json";
+  var CUSTOM_PRESET_DIR = Folder.myDocuments.fullName + "/Adobe/After Effects/AE_SUGI_ScriptLancher_CustomPresets";
+  var CUSTOM_FILE_PATH = CUSTOM_PRESET_DIR + "/FlowLite_CustomPresets.json";
+}
+
+function ensureCustomPresetFolder(){
+  var folder = new Folder(CUSTOM_PRESET_DIR);
+  if (!folder.exists){
+    folder.create();
+  }
+  return folder;
 }
 
 // ディープコピー関数
@@ -55,6 +64,7 @@ function selectAnimatedPropertiesOnSelectedLayers(){
 
 // カスタムプリセットの読み込み
 function loadCustomPresets(){
+  ensureCustomPresetFolder();
   var f = new File(CUSTOM_FILE_PATH);
   if(f.exists){
     try{
@@ -77,6 +87,7 @@ function loadCustomPresets(){
 
 // カスタムプリセットの保存
 function saveCustomPresets(){
+  ensureCustomPresetFolder();
   var f = new File(CUSTOM_FILE_PATH);
   try{
     f.open("w");
@@ -397,6 +408,16 @@ function buildUI(thisObj){
   var win = isPanel
           ? thisObj
           : new Window("palette","Curve Presets (FlowLite)", undefined);
+
+  if (!isPanel){
+    win.onClose = function(){
+      try {
+        if ($.global.__FLOWLITE_PALETTE__ === win){
+          $.global.__FLOWLITE_PALETTE__ = null;
+        }
+      } catch (_) {}
+    };
+  }
 
   win.orientation   = "column";
   win.alignChildren = ["fill","fill"];
@@ -1373,11 +1394,7 @@ function buildUI(thisObj){
   };
 
   btnOpenCustomFolder.onClick = function(){
-    var f = new File(CUSTOM_FILE_PATH);
-    var folder = f.parent;
-    if (!folder.exists){
-      folder.create();
-    }
+    var folder = ensureCustomPresetFolder();
     try{
       folder.execute();
     }catch(e){

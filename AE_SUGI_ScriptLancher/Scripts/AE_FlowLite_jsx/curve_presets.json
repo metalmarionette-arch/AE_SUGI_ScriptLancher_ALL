@@ -456,43 +456,43 @@
       "id": "sp-heavy",
       "name": "Heavy",
       "dir": "INOUT",
-      "m":5.0,"k":35,"c":0
+      "m":3.5,"k":20,"c":26
     },
     {
       "id": "sp-bouncy",
       "name": "Bouncy",
       "dir": "INOUT",
-      "m":4.0,"k":80,"c":0
+      "m":1.0,"k":80,"c":0
     },
     {
       "id": "sp-drop",
       "name": "Drop",
       "dir": "INOUT",
-       "m":4.0,"k":25,"c":5
+       "m":4.0,"k":10,"c":5
     },
     {
       "id": "sp-gride",
       "name": "Gride",
       "dir": "INOUT",
-      "m":0.0,"k":10,"c":15
+      "m":1.0,"k":10,"c":75
     },
     {
       "id": "sp-snap",
       "name": "Snap",
       "dir": "INOUT",
-      "m":1.0,"k":50,"c":0
+      "m":1.0,"k":90,"c":95
     },
     {
       "id": "sp-lazy",
       "name": "Lazy",
       "dir": "INOUT",
-      "m":2.5,"k":10,"c":0
+      "m":2.5,"k":4,"c":15
       },
     {
       "id": "sp-elastic",
       "name": "Elastic",
       "dir": "INOUT",
-      "m":2.5,"k":15,"c":3
+      "m":1.0,"k":30,"c":50
     }
   ],
   "bounce": [

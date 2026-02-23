@@ -28,7 +28,26 @@
     return; // プリセット読み込み失敗
   }
 
+  var existingPalette = null;
+  try {
+    existingPalette = $.global.__FLOWLITE_PALETTE__;
+  } catch (_) {}
+
+  if (existingPalette && (existingPalette instanceof Window)){
+    try {
+      existingPalette.show();
+      existingPalette.active = true;
+      return;
+    } catch (_){
+      try { $.global.__FLOWLITE_PALETTE__ = null; } catch(__){}
+    }
+  }
+
   var ui=buildUI(thisObj);
-  if (ui instanceof Window){ ui.center(); ui.show(); }
+  if (ui instanceof Window){
+    try { $.global.__FLOWLITE_PALETTE__ = ui; } catch (_){ }
+    ui.center();
+    ui.show();
+  }
 
 })(this);
