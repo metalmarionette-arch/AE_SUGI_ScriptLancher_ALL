@@ -25,9 +25,18 @@ function Ensure-Elevated {
     if ($AllDetectedVersions) { $argList += '-AllDetectedVersions' }
     if ($Force) { $argList += '-Force' }
 
-    Start-Process -FilePath 'powershell.exe' -ArgumentList ($argList -join ' ') -Verb RunAs | Out-Null
-    Write-Host 'Elevated installer started.' -ForegroundColor Cyan
-    exit 0
+    $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList ($argList -join ' ') -Verb RunAs -Wait -PassThru
+
+    if ($null -eq $proc) {
+        throw 'Failed to start elevated installer process.'
+    }
+
+    if ($proc.ExitCode -ne 0) {
+        throw ("Elevated installer failed with exit code: {0}" -f $proc.ExitCode)
+    }
+
+    Write-Host 'Elevated installer completed.' -ForegroundColor Cyan
+    exit $proc.ExitCode
 }
 
 function Get-AfterEffectsScriptUiPanelPath {
@@ -59,6 +68,11 @@ function Copy-WithPrompt {
 }
 
 try {
+    if (-not $AeVersion -and -not $AllDetectedVersions) {
+        $AllDetectedVersions = $true
+        Write-Host 'No version argument supplied. Using auto-detect mode.' -ForegroundColor Cyan
+    }
+
     Ensure-Elevated
 
     $repoRoot = Split-Path -Parent $PSCommandPath
@@ -86,11 +100,7 @@ try {
             throw 'No After Effects installations detected. Use -AeVersion 2024 (or similar).'
         }
     } else {
-        $inputVer = Read-Host 'Enter After Effects version (example: 2024)'
-        if (-not $inputVer) {
-            throw 'No version was entered.'
-        }
-        $versions = @($inputVer)
+        throw 'No install mode selected. Use -AeVersion 2024 or -AllDetectedVersions.'
     }
 
     $installedToAe = $false
