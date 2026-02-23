@@ -4,7 +4,8 @@ param(
     [switch]$AllDetectedVersions,
     [switch]$Force,
     [switch]$Elevated,
-    [switch]$NonInteractive
+    [switch]$NonInteractive,
+    [switch]$CleanInstall
 )
 
 $ErrorActionPreference = 'Stop'
@@ -26,6 +27,7 @@ function Ensure-Elevated {
     if ($AllDetectedVersions) { $argList += '-AllDetectedVersions' }
     if ($Force) { $argList += '-Force' }
     if ($NonInteractive) { $argList += '-NonInteractive' }
+    if ($CleanInstall) { $argList += '-CleanInstall' }
 
     $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList ($argList -join ' ') -Verb RunAs -Wait -PassThru
 
@@ -85,6 +87,11 @@ try {
     if (-not $NonInteractive) {
         $NonInteractive = $true
         Write-Host 'Non-interactive mode enabled by default.' -ForegroundColor Cyan
+    }
+
+    if (-not $CleanInstall) {
+        $CleanInstall = $true
+        Write-Host 'Clean install mode enabled by default.' -ForegroundColor Cyan
     }
 
     Ensure-Elevated
@@ -148,6 +155,11 @@ try {
     }
 
     $launcherRoot = Get-LauncherDataPath
+    if ($CleanInstall -and (Test-Path $launcherRoot)) {
+        Write-Host ("Cleaning destination folder: {0}" -f $launcherRoot) -ForegroundColor Cyan
+        Remove-Item -Path (Join-Path $launcherRoot '*') -Recurse -Force -ErrorAction SilentlyContinue
+    }
+
     if (-not (Test-Path $launcherRoot)) {
         New-Item -Path $launcherRoot -ItemType Directory -Force | Out-Null
     }
