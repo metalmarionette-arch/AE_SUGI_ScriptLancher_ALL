@@ -2,15 +2,30 @@
 // グローバル変数 & カスタムプリセット管理
 // ============================================================================
 var CUSTOM_PRESETS = [];
-if (typeof CUSTOM_FILE_PATH === "undefined") {
-  var CUSTOM_PRESET_DIR = Folder.myDocuments.fullName + "/Adobe/After Effects/AE_SUGI_ScriptLancher_CustomPresets";
-  var CUSTOM_FILE_PATH = CUSTOM_PRESET_DIR + "/FlowLite_CustomPresets.json";
+var CUSTOM_PRESET_DIR = Folder.myDocuments.fullName + "/Adobe/After Effects/AE_SUGI_ScriptLancher_CustomPresets";
+var CUSTOM_FILE_PATH = CUSTOM_PRESET_DIR + "/AE_FlowLite_CustomPreset.json";
+var LEGACY_CUSTOM_FILE_PATH = CUSTOM_PRESET_DIR + "/AE_FlowLite_CustomPreset";
+
+function ensureFolderTree(folder){
+  if (!folder) return false;
+  if (folder.exists) return true;
+
+  var parent = folder.parent;
+  if (parent && !parent.exists){
+    if (!ensureFolderTree(parent)) return false;
+  }
+
+  if (!folder.exists){
+    if (!folder.create()) return false;
+  }
+
+  return folder.exists;
 }
 
 function ensureCustomPresetFolder(){
   var folder = new Folder(CUSTOM_PRESET_DIR);
-  if (!folder.exists){
-    folder.create();
+  if (!ensureFolderTree(folder)){
+    alert("カスタムプリセットフォルダを作成できませんでした: " + CUSTOM_PRESET_DIR);
   }
   return folder;
 }
@@ -66,9 +81,14 @@ function selectAnimatedPropertiesOnSelectedLayers(){
 function loadCustomPresets(){
   ensureCustomPresetFolder();
   var f = new File(CUSTOM_FILE_PATH);
+  if (!f.exists){
+    var legacy = new File(LEGACY_CUSTOM_FILE_PATH);
+    if (legacy.exists) f = legacy;
+  }
+
   if(f.exists){
     try{
-      f.open("r");
+      if (!f.open("r")) return;
       var str = f.read();
       f.close();
       var data = JSON.parse(str);
@@ -90,7 +110,10 @@ function saveCustomPresets(){
   ensureCustomPresetFolder();
   var f = new File(CUSTOM_FILE_PATH);
   try{
-    f.open("w");
+    if (!f.open("w")){
+      alert("カスタムプリセットファイルを開けませんでした: " + CUSTOM_FILE_PATH);
+      return;
+    }
     f.write(JSON.stringify(CUSTOM_PRESETS));
     f.close();
   }catch(e){
